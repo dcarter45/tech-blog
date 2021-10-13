@@ -1,18 +1,21 @@
+const path = require('path');
 const express = require('express');
-const app = express();
-const port = 3000;
-//Loads the handlebars module
-const handlebars = require('express-handlebars');
-//Sets our app to use the handlebars engine
-app.set('view engine', 'handlebars');
-//Sets handlebars configurations (we will go through them later on)
-app.engine('handlebars', handlebars({
-layoutsDir: __dirname + '/views/layouts',
-}));
-app.use(express.static('public'))
-app.get('/', (req, res) => {
-//Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
-res.render('main', {layout : 'index'});
-});
+const routes = require('./controllers');
+const exphbs = require('express-handlebars');
+const helpers = require('./utils/helpers');
 
-app.listen(port, () => console.log(`App listening to port ${port}`));
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+const hbs = exphbs.create({ helpers });
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(routes);
+
+app.listen(PORT, () => console.log(`App listening to port ${PORT}`));
