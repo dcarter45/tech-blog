@@ -3,6 +3,12 @@ const express = require('express');
 const routes = require('./controllers');
 const exphbs = require('express-handlebars');
 const helpers = require('./utils/helpers');
+// const sequelize= require('./config/connection')
+// const mysql = require('mysql2');
+const session = require('express-session');
+
+// const cookieParser = require("cookie-parser");
+// require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -17,5 +23,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
+
+// app.use(cookieParser());
+
+app.use(session({
+    secret: 'secret-key',
+    resave:false,
+    saveUninitialized: false
+}));
 
 app.listen(PORT, () => console.log(`App listening to port ${PORT}`));
