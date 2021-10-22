@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const blogRoutes = require('./blog-routes');
+const homeRoutes = require('./homepage-routes');
 const loginRoutes = require('./login-routes');
 const signupRoutes = require('./signup-routes');
 
-router.use('/', blogRoutes);
+router.use('/', homeRoutes);
 router.use('/', loginRoutes);
 router.use('/', signupRoutes);
 

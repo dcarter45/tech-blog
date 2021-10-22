@@ -25,12 +25,15 @@ User.init({
     user_username: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique:true
       },
-    user_password: {
+      user_password: {
         type: DataTypes.STRING,
         allowNull: false,
-        },
-    },
+        validate: {
+            len: [8, 20]
+        }
+    }},
       {
         sequelize,
         freezeTableName: true,

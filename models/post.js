@@ -21,11 +21,11 @@ Post.init(
         key: "id",
       }
     },
-    post_title: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    post_contents: {
+    post: {
       type: DataTypes.STRING,
       allowNull: true,
     }

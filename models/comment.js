@@ -27,22 +27,17 @@ Comment.init(
         key: "id",
       }
     },
-    comment_content: {
+    comment_contents: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    comment_contents: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    which_post_to_comment:{
-        type: DataTypes.INTEGER,
-        references:{
-          model:'post',
-          key: "id",
-        }
-      },
-  },
+  post_id: {
+      type: DataTypes.INTEGER,
+      references: {
+          model: 'post',
+          key: 'id'
+      }
+  }},
   {
     sequelize,
     freezeTableName: true,
