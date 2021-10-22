@@ -1,7 +1,7 @@
 // import models
 const User = require('./user');
-// const Post = require('./post');
-// const Comment = require('./comment');
+const Post = require('./post');
+const Comment = require('./comment');
 
 
 // Products belongsTo Category
@@ -21,6 +21,6 @@ const User = require('./user');
   
 module.exports = {
  User,
-//  Comment,
-//  Post
+ Comment,
+ Post
 };

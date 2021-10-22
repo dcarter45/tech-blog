@@ -3,9 +3,9 @@ const express = require('express');
 const routes = require('./controllers');
 const exphbs = require('express-handlebars');
 const helpers = require('./utils/helpers');
+const session = require('express-session');
 // const sequelize= require('./config/connection')
 // const mysql = require('mysql2');
-const session = require('express-session');
 
 // const cookieParser = require("cookie-parser");
 // require('dotenv').config();

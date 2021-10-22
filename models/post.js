@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Dish extends Model {}
+class Post extends Model {}
 
-Dish.init(
+Post.init(
 
   // CONTENTS,TITLE,
    // foreign key has to be the id, and we'll get the user_id which will be a foreign key to user
@@ -14,28 +14,28 @@ Dish.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    dish_name: {
+    user_id:{
+      type: DataTypes.INTEGER,
+      references:{
+        model:'user',
+        key: "id",
+      }
+    },
+    post_title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
+    post_contents: {
       type: DataTypes.STRING,
       allowNull: true,
-    },
-    guest_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    has_nuts: {
-      type: DataTypes.BOOLEAN,
-    },
+    }
   },
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'dish',
+    modelName: 'post',
   }
 );
 
-module.exports = Dish;
+module.exports = Post;
