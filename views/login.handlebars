@@ -2,7 +2,7 @@
     <form class="login-form" method="post">
         <div>
             <label for="username-login">username:</label>
-            <input name="user_username" type="text" id="username-login" />
+            <input name="user_username" value="{{user_username}}" type="text" id="username-login" />
         </div>
         <div>
             <label for="password-login">password:</label>
@@ -11,5 +11,9 @@
         <div>
             <button type="submit">Login</button>
         </div>
+
+        <p>
+            {{error}}
+        </p>
     </form>
 </div>

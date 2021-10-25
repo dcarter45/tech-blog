@@ -1,23 +1,48 @@
-const router = require('express').Router();
-const { User } = require('../models');
+const router = require("express").Router();
+const { User } = require("../models");
+const bcrypt = require("bcrypt");
 
+router.get("/login", async (req, res) => {
+  res.render("login");
+});
 
-router.get('/login', async (req, res) => {
-    res.render('login');
-  });
+router.post("/login", (req, res) => {
+  const error = `Wrong Username or Password`;
 
-  router.post ('/login', (req, res) => {
-    console.log(`AAA`, req.body);
-    User.create(req.body)
-    .then((userLogin) => {
-        console.log(`user successfully logged in`);
-        res.redirect('/homepage')
+  User.findOne({
+    where: {
+      user_username: req.body.user_username,
+    },
+  })
+    .then((user) => {
+      const context = { error: error, user_username: req.body.user_username };
+      if (user) {
+        const myPlaintextPassword = req.body.user_password;
+        const hash = user.user_password;
+        bcrypt.compare(myPlaintextPassword, hash, function (err, result) {
+          // result == true
+          if (result) {
+            // if user password is correct
+            console.log(`correct username and password`);
+            req.session.loggedIn = true;
+            req.session.username = req.body.user_username;
+            res.redirect("/homepage");
+          }
+          //if password is incorrect
+          else {
+            console.log(`you hit the wrong password error`, context);
+            res.render("login", context);
+          }
+        });
+      } else {
+        console.log(`you hit the wrong username error`);
+        res.render("login",context );
+      }
     })
     .catch((err) => {
-        console.log(`the catch,`, err);
-     res.render('login',{err});
-     
+      console.log(`the catch,`, err);
+      res.render("login", { error });
     });
-  });
+});
 
 module.exports = router;

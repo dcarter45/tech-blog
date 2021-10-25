@@ -14,7 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(session({
-    secret: 'secret-key',
+    secret: 'kfkgjnefgnjire21i31knhkln', 
     // path: '/',
     resave:false,
     saveUninitialized: false
