@@ -6,8 +6,6 @@ router.get('/signup', async (req, res) => {
     res.render('signup');
   });
 
-
-
   router.post ('/signup', (req, res) => {
     console.log(`AAA`, req.body);
     User.create(req.body)

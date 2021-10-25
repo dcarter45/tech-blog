@@ -1,21 +1,39 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/style.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Blog Homepage</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <nav class="topnav">
-  <a class="active" href="#home">Home</a>
-  <a href="#sign-in">Sign in</a>
-  <a href="/signup">sign up</a>
-    </nav>
-    {{{body}}}
-
-
+  <div class="wrapper">
+    <header>
+      <h1>
+        <a href="/">Tech Blog</a>
+      </h1>
+      <nav>
+        {{#if loggedIn}}
+        <a href="/dashboard">dashboard</a>
+        <button id="logout" class="btn-no-style">logout</button>
+        {{else}}
+        <a href="/login">login</a>
+        {{/if}}
+      </nav>
+    </header>
+    <main>
+      {{{ body }}}
+    </main>
+    <footer>
+      Made with &hearts;
+    </footer>
+  </div>
+  {{#if loggedIn}}
+  <script src="/javascript/logout.js"></script>
+  {{/if}}
 </body>
+
 </html>

@@ -13,6 +13,13 @@ const session = require('express-session');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+app.use(session({
+    secret: 'secret-key',
+    // path: '/',
+    resave:false,
+    saveUninitialized: false
+}));
+
 const hbs = exphbs.create({ helpers });
 
 app.engine('handlebars', hbs.engine);
@@ -26,10 +33,6 @@ app.use(routes);
 
 // app.use(cookieParser());
 
-app.use(session({
-    secret: 'secret-key',
-    resave:false,
-    saveUninitialized: false
-}));
+
 
 app.listen(PORT, () => console.log(`App listening to port ${PORT}`));
