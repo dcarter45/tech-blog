@@ -35,49 +35,50 @@ router.get("/dashboard", (req, res) => {
     });
 });
 
-//Get one post
-// router.get('/:id', (req, res) => {
-//     Post.findOne({
-//             where: {
-//                 id: req.params.id
-//             },
-//             attributes: [
-//                 'id',
-//                 'title',
-//                 'post',
-//                 // 'reference_url',
-//                 // 'created_at',
+// Get one post
+router.get('/post/:id', (req, res) => {
+    Post.findOne({
+            where: {
+                id: req.params.id
+            },
+            attributes: [
+                'id',
+                'title',
+                'post',
+                
+                'created_at',
 
-//             ],
-//             include: [{
-//                     model: Comment,
-//                     attributes: ['id', 'comment_contents', 'post_id', 'user_id'],
-//                     include: {
-//                         model: User,
-//                         attributes: ['user_username']
-//                     }
-//                 },
-//                 {
-//                     model: User,
-//                     attributes: ['user_username']
-//                 }
-//             ]
-//         })
-//         .then(dbPostData => {
-//             if (!dbPostData) {
-//                 res.status(404).json({
-//                     message: 'No post found with this id'
-//                 });
-//                 return;
-//             }
-
-//             res.json(dbPostData);
-//         })
-//         .catch(err => {
-//             console.log('err POST', err);
-//             res.status(500).json('THIS IS WHERE YOUR ERROR ISSS!!!!!!', err);
-//         });
-// });
+            ],
+            include: [{
+                    model: Comment,
+                    attributes: ['id', 'comment_contents', 'post_id', 'user_id','created_at',],
+                    include: {
+                        model: User,
+                        attributes: ['user_username']
+                    }
+                },
+                {
+                    model: User,
+                    attributes: ['user_username']
+                }
+            ]
+        })
+        .then(dbPostData => {
+            if (!dbPostData) {
+                res.status(404).json({
+                    message: 'No post found with this id'
+                });
+                return;
+            }
+            const post= dbPostData.get({ plain: true })
+            console.log(post);
+            res.render('post', {post});
+        })
+        .catch(err => {
+            console.log('err POST', err);
+            res.status(500).json('THIS IS WHERE YOUR ERROR ISSS!!!!!!', err);
+        });
+});
 
 // create a post
 router.post("/post", (req, res) => {
