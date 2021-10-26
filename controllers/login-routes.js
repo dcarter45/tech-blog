@@ -23,10 +23,11 @@ router.post("/login", (req, res) => {
           // result == true
           if (result) {
             // if user password is correct
-            console.log(`correct username and password`);
+            console.log(user.id);
             req.session.loggedIn = true;
             req.session.username = req.body.user_username;
-            res.redirect("/homepage");
+            req.session.user_id = user.id;
+            res.redirect("/");
           }
           //if password is incorrect
           else {

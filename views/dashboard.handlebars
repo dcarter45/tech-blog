@@ -2,18 +2,14 @@
     <h2 class="font-bold ">Create Your Own Post</h2>
     <p>Add a title, post, and a link to what assisted you or your GitHub repository.</p>
 
-    <form class="new-post-form" method="get">
+    <form class="new-post-form" method="post" action="/post">
         <div>
             <label for="post-title">Title</label>
-            <input type="text" id="post-title" name="post-title" />
+            <input type="text" id="post-title" name="post_title" />
         </div>
         <div>
             <label for="post-body">Post</label>
-            <input type="text" id="post-body" name="post-body" />
-        </div>
-        <div>
-            <label for="reference-url">Link</label>
-            <input id="reference-url" name="reference-url" />
+            <input type="text" id="post-body" name="post_body" />
         </div>
         <button type="submit" class="btn">Make Post</button>
     </form>
@@ -24,7 +20,22 @@
         <ol>
             {{#each posts as |post|}}
             <li>
-                {{> post-info post}}
+               <div class="postDiv">
+
+    <div class="postID">
+        {{post.id}}.
+        {{post.title}}.
+    </div>
+
+    <div class="postContent">
+        {{post.post}}
+
+    </div>
+
+    
+
+</div>
+
                 <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
             </li>
             {{/each}}
@@ -33,4 +44,4 @@
     {{/if}}
 </section>
 
-<script src="/javascript/add-post.js"></script>
+{{!-- <script src="/javascript/add-post.js"></script> --}}

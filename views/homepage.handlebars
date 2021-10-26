@@ -1,18 +1,21 @@
 <h1>Tech blog Homepage</h1>
 
-<nav class="topnav">
-  <a class="active" href="/homepage" >Homepage</a>
-  <a href="/dashboard">dashboard</a>
-  <a href="/signout">Log out</a>
-    </nav>
+
 
 {{#each posts as |post|}}
 <div class="postDiv">
 
-    
+    <div class="postID">
         {{post.id}}.
         {{post.author}}.
+    </div>
+
+    <div class="postContent">
+
         {{post.content}}
+    </div>
+
+    
 
 </div><br>
 {{/each}}

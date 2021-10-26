@@ -25,7 +25,10 @@ User.init({
     user_username: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique:true
+        unique: {
+          args: true,
+          msg: 'username address already in use!'
+      }
       },
       user_password: {
         type: DataTypes.STRING,
