@@ -20,6 +20,12 @@ app.use(session({
     saveUninitialized: false
 }));
 
+
+app.use(function (req, res, next) {
+    res.locals.session = req.session;
+    next();
+});
+
 const hbs = exphbs.create({ helpers });
 
 app.engine('handlebars', hbs.engine);

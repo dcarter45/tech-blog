@@ -210,3 +210,7 @@
     padding: 1%;
     font-size: 110%;
   }
+
+  .postDiv{
+    display: block;
+  }

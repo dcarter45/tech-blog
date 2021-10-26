@@ -16,9 +16,10 @@
         <a href="/">Tech Blog</a>
       </h1>
       <nav>
-        {{#if loggedIn}}
+        {{#if session.loggedIn}}
         <a href="/dashboard">dashboard</a>
-        <button id="logout" class="btn-no-style">logout</button>
+        <a href="/signout">signout</a>
+        
         {{else}}
         <a href="/login">login</a>
         {{/if}}
