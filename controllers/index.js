@@ -4,6 +4,7 @@ const loginRoutes = require('./login-routes');
 const signupRoutes = require('./signup-routes');
 const signoutRoutes = require('./signout-routes');
 const dashboardRoutes = require('./dashboard-routes');
+const commentRoutes = require('./comment-routes.js');
 // const updatedDashboardRoutes = require('./updatedDashboard-routes');
 
 router.use('/', homeRoutes);
@@ -12,5 +13,7 @@ router.use('/', signupRoutes);
 router.use('/', dashboardRoutes);
 // router.use('/', updatedDashboardRoutes);
 router.use('/', signoutRoutes);
+router.use('/comment', commentRoutes);
+
 
 module.exports = router;

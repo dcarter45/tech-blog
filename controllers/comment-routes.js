@@ -1,6 +1,6 @@
 const router = require('express').Router();
 // const withAuth = require('../../utils/auth');
-const { Comment } = require('../../models');
+const { Comment } = require('../models');
 
 router.get('/', (req, res) => {
   Comment.findAll()
@@ -13,14 +13,18 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   // expects => {comment_text: "This is the comment", user_id: 1, post_id: 2}
+  console.log(`right before the if`);
   if (req.session) {
     Comment.create({
-      comment_text: req.body.comment_text,
+      comment_contents: req.body.comment_body,
       post_id: req.body.post_id,
       // use the id from the session
       user_id: req.session.user_id
     })
-    .then(dbCommentData => res.json(dbCommentData))
+    .then((comment) => {
+      console.log(`created new comment`);
+      res.redirect(`/post/${comment.post_id}`);
+    })    
     .catch(err => {
       console.log(err);
       res.status(400).json(err);

@@ -9,4 +9,18 @@
         {{post.post}}
 
     </div>
+
+</div>
+
+<div class="comment">
+    <form class="comment_form" method="post" action="/comment">
+    <input type="hidden" value="{{post.id}}" name="post_id">
+  <div>
+    <textarea name="comment_body"></textarea>
+  </div>
+
+  <div>
+    <button type="submit">add comment</button>
+  </div>
+</form>
 </div>
