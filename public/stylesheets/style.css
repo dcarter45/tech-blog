@@ -224,3 +224,31 @@
   .postDiv{
     display: block;
   }
+
+  .delete-post-btn{
+    color: #7CDF64;
+  }
+
+  .created_at{
+    font-size: 12px;
+  }
+
+  .postContent{
+    font-size: 22px;
+    color:red;
+    display: block;
+    width: 100px;}
+
+  .post_Title{
+    font-size: 42px;
+    color:black;
+    display: block;
+    width: 150px;}
+
+    .title{
+      display: block;
+    }
+
+    .comment_created_at{
+      color: black;
+    }

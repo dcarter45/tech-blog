@@ -31,7 +31,10 @@ router.get("/dashboard", (req, res) => {
     })
     .catch((err) => {
       console.log("error with dashboard get all", err);
-      res.status(500).json(err);
+      res.render('error',{
+        message: err,
+        title:`Dashboard`
+    });
     });
 });
 
@@ -45,7 +48,6 @@ router.get('/post/:id', (req, res) => {
                 'id',
                 'title',
                 'post',
-                
                 'created_at',
 
             ],
@@ -124,25 +126,28 @@ router.post('/post/edit/:id', (req, res) => {
 });
 
 // Delete a post
-// router.delete('/:id', (req, res) => {
-//     Post.destroy({
-//             where: {
-//                 id: req.params.id
-//             }
-//         })
-//         .then(dbPostData => {
-//             if (!dbPostData) {
-//                 res.status(404).json({
-//                     message: 'No post found with this id'
-//                 });
-//                 return;
-//             }
-//             res.json(dbPostData);
-//         })
-//         .catch(err => {
-//             console.log('err', err);
-//             res.status(500).json(err);
-//         });
-// });
+router.post('/post/delete/:id', (req, res) => {
+    Post.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        .then(dbPostData => {
+            if (!dbPostData) {
+                res.render('delete',{
+                    message: 'No post found with this id'
+                });
+                return;
+            }
+            res.redirect('/dashboard');
+        })
+        .catch(err => {
+            console.log('err', err);
+            res.render('error',{
+              message: err,
+              title:`Delete Post ${req.params.id}`
+          });
+        });
+});
 
 module.exports = router;

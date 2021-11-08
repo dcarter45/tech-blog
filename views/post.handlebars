@@ -10,7 +10,12 @@
          {{#each post.comments as |comment|}} 
          <div>
 
-         {{comment.comment_contents}}
+         {{comment.comment_contents}}<br>
+
+         <div class="comment_created_at">
+
+         {{comment.created_at}}
+         </div>
          </div>
          {{/each}}
     </div>
@@ -26,6 +31,17 @@
 
   <div>
     <button type="submit">add comment</button>
+  </div>
+
+</form>
+<div>
+  {{post.created_at}}
+</div>
+
+<form action="/post/delete/{{post.id}}" method="post">
+
+  <div>
+     <button type="submit" class="delete-post-btn btn">Delete Post</button>
   </div>
 </form>
 </div>
