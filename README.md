@@ -25,7 +25,7 @@ Npm start
 
 ## Deployed Link:
 [Ecommerce](https://github.com/dcarter45/tech-blog)
-[Heroku](https://github.com/dcarter45/tech-blog)
+[Heroku](https://aqueous-woodland-54474.herokuapp.com/)
 
 
 ## Learning Points:
