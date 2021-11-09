@@ -1,12 +1,25 @@
- <div class="postDiv">
+<div class="postDiv">
 
-    <div class="postID">
-        {{post.id}}.
-        {{post.title}}.
+      <div class="postID">
+      <span class="reference_tag">Post I.D:</span>  {{post.id}}<br>
+       <span class="reference_tag">User:</span>
+        {{post.user.user_username}}
+      </div>
+<div class="post_Title">
+      <span class="reference_tag">Title :</span>  {{post.title}}<br>
+        <div class="created_at">
+
+        {{created_at}}.
+        </div>
+</div>
+<span class="reference_tag">comments:</span>
+
+      <div class="postContent">
+        {{post.post}}<br>
+        
+      </div>
+
     </div>
-
-    <div class="postContent">
-        {{post.post}}
          {{#each post.comments as |comment|}} 
          <div>
 
@@ -22,8 +35,9 @@
 
 </div>
 
+{{#if session.loggedIn}}
 <div class="comment">
-    <form class="comment_form" method="post" action="/comment">
+   <form class="comment_form" method="post" action="/comment">
     <input type="hidden" value="{{post.id}}" name="post_id">
   <div>
     <textarea name="comment_body"></textarea>
@@ -33,10 +47,7 @@
     <button type="submit">add comment</button>
   </div>
 
-</form>
-<div>
-  {{post.created_at}}
-</div>
+  </form>
 
 <form action="/post/delete/{{post.id}}" method="post">
 
@@ -44,4 +55,8 @@
      <button type="submit" class="delete-post-btn btn">Delete Post</button>
   </div>
 </form>
+  <div>
+     <a href="/post/edit/{{post.id}}">Edit Post</a>
+  </div>
 </div>
+{{/if}}

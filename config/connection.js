@@ -9,9 +9,9 @@ const sequelize = process.env.JAWSDB_URL
       dialect: 'mysql',
       
       dialectOptions: {
-        // options: {
-        //   requestTimeout: 300000
-        // },
+        options: {
+          requestTimeout: 300000
+        },
         decimalNumbers: true,
       }
     });

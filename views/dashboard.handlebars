@@ -12,7 +12,7 @@
       <label for="post-body">Post</label>
       <input type="text" id="post-body" name="post_body" />
     </div>
-    <button type="submit" class="btn">Make Post</button>
+    <button  type="submit" class="btn">Make Post</button>
     
   </form>
 
@@ -25,18 +25,25 @@
             <li>
               <div class="postDiv">
 
-                <div class="postID">
-                  {{post.id}}.
-                  {{post.title}}.
-                </div>
+      <div class="postID">
+      <span class="reference_tag">Post I.D:</span>  {{post.id}}<br>
+       <span class="reference_tag">User:</span>
+        {{post.user.user_username}}
+      </div>
+<div class="post_Title">
+      <span class="reference_tag">Title :</span>  {{post.title}}<br>
+        <div class="created_at">
 
-                <div class="postContent">
-                  {{post.post}}
+        {{created_at}}.
+        </div>
+</div>
+<span class="reference_tag">comments:</span>
+      <div class="postContent">
+        {{post.post}}<br>
+        
+      </div>
 
-                </div>
-
-              </div>
-
+    </div>
             </li>
           </a>
         {{/each}}

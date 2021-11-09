@@ -103,12 +103,15 @@ router.post("/post", (req, res) => {
 
 // update a post title
 router.post('/post/edit/:id', (req, res) => {
+  console.log(`editing post`);
   Post.update({
-          title: req.body.title
+          title: req.body.title,
+          post: req.body.post
       }, {
           where: {
               id: req.params.id
-          }
+          },
+          
       })
       .then(dbPostData => {
           if (!dbPostData) {
@@ -117,11 +120,46 @@ router.post('/post/edit/:id', (req, res) => {
               });
               return;
           }
-          res.json(dbPostData);
+          res.redirect('/dashboard');
       })
       .catch(err => {
           console.log('err', err);
           res.status(500).json(err);
+      });
+});
+
+//edit-post
+router.get('/post/edit/:id', (req, res) => {
+  Post.findOne({
+          where: {
+              id: req.params.id
+          },
+          attributes: [
+              'id',
+              'title',
+              'post',
+              'created_at',
+          ]
+      })
+      .then(dbPostData => {
+          if (!dbPostData) {
+              res.render('error',{
+                  message: 'No post found with this id',
+                  title:`edit post`
+              });
+              return;
+          }
+          const post= dbPostData.get({ plain: true })
+          console.log(post);
+          res.render('edit-post', {post});
+         
+      })
+      .catch(err => {
+          res.render('error',{
+            message: err,
+            title:`edit post`
+        });
+          
       });
 });
 

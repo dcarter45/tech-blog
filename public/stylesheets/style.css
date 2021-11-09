@@ -170,10 +170,7 @@
     margin-bottom: 5%;
   }
   
-  .comment {
-    padding: 1%;
-    margin-bottom: 1%;
-  }
+ 
   
   .comment:nth-child(odd) {
     background-color: #fff5eb;
@@ -223,27 +220,29 @@
 
   .postDiv{
     display: block;
+    border: 1px solid black;
+    margin: 5px;
   }
 
-  .delete-post-btn{
-    color: #7CDF64;
-  }
 
   .created_at{
     font-size: 12px;
   }
 
+  
+
   .postContent{
     font-size: 22px;
-    color:red;
+    color:darkblue;
     display: block;
-    width: 100px;}
+    width: auto;
+  border: 1px solid black;}
 
   .post_Title{
     font-size: 42px;
     color:black;
     display: block;
-    width: 150px;}
+    width: auto;}
 
     .title{
       display: block;
@@ -252,3 +251,9 @@
     .comment_created_at{
       color: black;
     }
+
+    .reference_tag{
+font-size: 32px;
+    }
+
+  
