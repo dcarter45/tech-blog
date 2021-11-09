@@ -1,12 +1,9 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 
 class Post extends Model {}
 
 Post.init(
-
-  // CONTENTS,TITLE,
-   // foreign key has to be the id, and we'll get the user_id which will be a foreign key to user
   {
     id: {
       type: DataTypes.INTEGER,
@@ -14,13 +11,13 @@ Post.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_id:{
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references:{
-        model:'user',
+      references: {
+        model: "user",
         key: "id",
-      }
+      },
     },
     title: {
       type: DataTypes.STRING,
@@ -29,13 +26,13 @@ Post.init(
     post: {
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },
   },
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'post',
+    modelName: "post",
   }
 );
 

@@ -1,9 +1,8 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
-  router.get ('/signout', (req, res) => {
-    // console.log(`AAA`, req.body);
-    req.session.destroy();
-    res.redirect('/')
-  });
+router.get("/signout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
+});
 
 module.exports = router;

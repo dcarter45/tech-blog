@@ -23,7 +23,7 @@ router.post("/login", (req, res) => {
           // result == true
           if (result) {
             // if user password is correct
-            console.log(user.id);
+
             req.session.loggedIn = true;
             req.session.username = req.body.user_username;
             req.session.user_id = user.id;
@@ -31,17 +31,14 @@ router.post("/login", (req, res) => {
           }
           //if password is incorrect
           else {
-            console.log(`you hit the wrong password error`, context);
             res.render("login", context);
           }
         });
       } else {
-        console.log(`you hit the wrong username error`);
-        res.render("login",context );
+        res.render("login", context);
       }
     })
     .catch((err) => {
-      console.log(`the catch,`, err);
       res.render("login", { error });
     });
 });

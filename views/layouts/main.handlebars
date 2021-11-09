@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
 
   <title>Tech Blog Homepage</title>
-  
+
   <link rel="stylesheet" href="/stylesheets/style.css">
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
@@ -22,8 +22,8 @@
         {{#if session.loggedIn}}
         <a href="/dashboard">My dashboard</a>
         <a href="/signout">signout</a>
-        <a class="active" href="/" >Homepage</a>
-        
+        <a class="active" href="/">Homepage</a>
+
         {{else}}
         <a href="/login">login</a>
         <a href="/signup">signup</a>

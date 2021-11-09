@@ -1,62 +1,62 @@
 <div class="postDiv">
 
-      <div class="postID">
-      <span class="reference_tag">Post I.D:</span>  {{post.id}}<br>
-       <span class="reference_tag">User:</span>
-        {{post.user.user_username}}
-      </div>
-<div class="post_Title">
-      <span class="reference_tag">Title :</span>  {{post.title}}<br>
-        <div class="created_at">
+  <div class="postID">
+    <span class="reference_tag">Post I.D:</span> {{post.id}}<br>
+    <span class="reference_tag">User:</span>
+    {{post.user.user_username}}
+  </div>
+  <div class="post_Title">
+    <span class="reference_tag">Title :</span> {{post.title}}<br>
+    <div class="created_at">
 
-        {{created_at}}.
-        </div>
+      {{created_at}}.
+    </div>
+  </div>
+  <span class="reference_tag">comments:</span>
+
+  <div class="postContent">
+    {{post.post}}<br>
+
+  </div>
+
 </div>
-<span class="reference_tag">comments:</span>
+{{#each post.comments as |comment|}}
+<div>
 
-      <div class="postContent">
-        {{post.post}}<br>
-        
-      </div>
+  {{comment.comment_contents}}<br>
 
-    </div>
-         {{#each post.comments as |comment|}} 
-         <div>
+  <div class="comment_created_at">
 
-         {{comment.comment_contents}}<br>
-
-         <div class="comment_created_at">
-
-         {{comment.created_at}}
-         </div>
-         </div>
-         {{/each}}
-    </div>
+    {{comment.created_at}}
+  </div>
+</div>
+{{/each}}
+</div>
 
 </div>
 
 {{#if session.loggedIn}}
 <div class="comment">
-   <form class="comment_form" method="post" action="/comment">
+  <form class="comment_form" method="post" action="/comment">
     <input type="hidden" value="{{post.id}}" name="post_id">
-  <div>
-    <textarea name="comment_body"></textarea>
-  </div>
+    <div>
+      <textarea name="comment_body"></textarea>
+    </div>
 
-  <div>
-    <button type="submit">add comment</button>
-  </div>
+    <div>
+      <button type="submit">add comment</button>
+    </div>
 
   </form>
 
-<form action="/post/delete/{{post.id}}" method="post">
+  <form action="/post/delete/{{post.id}}" method="post">
 
+    <div>
+      <button type="submit" class="delete-post-btn btn">Delete Post</button>
+    </div>
+  </form>
   <div>
-     <button type="submit" class="delete-post-btn btn">Delete Post</button>
-  </div>
-</form>
-  <div>
-     <a href="/post/edit/{{post.id}}">Edit Post</a>
+    <a href="/post/edit/{{post.id}}">Edit Post</a>
   </div>
 </div>
 {{/if}}
